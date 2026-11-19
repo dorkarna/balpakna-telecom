@@ -41,6 +41,7 @@ jobs:
       - name: Build Debug APK
         run: |
           cd "$PROJECT_DIR"
+          sed -i '/^android {/i kotlin {\n    compilerOptions {\n        jvmTarget = org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_1_8\n    }\n}\n' app/build.gradle
           gradle --no-daemon assembleDebug
 
       - name: Upload APK
